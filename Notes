@@ -1,0 +1,174 @@
+- tasks:
+database
+se model, docs
+git
+work distribution, task ownership, knowledge sharing
+development env. & ide
+
+extraction based summary - strange grammar
+abstraction based summary - hard
+
+summarization is a supervised ML problem
+
+https://www.analyticsvidhya.com/blog/2018/11/introduction-text-summarization-textrank-python/
+
+SRS:
+-authentication
+-user history
+-keywords extraction
+-text summary
+-genre prediction
+
+secondary:
+-author prediction
+-text extraction
+-language
+-mobile app
+
+SVDD (software version deployment description)
+try using web service/algorithms
+
+Usage:
+-weather forecast
+-patient's summary
+-finance
+
+-----+---------| UDEMY |---------+-----
+https://www.udemy.com/share/101wekCEQYdl5QTHg=/
+
++-+-+-+-+-+-+-+-+
+| NLTK Corpora  |
++-+-+-+-+-+-+-+-+
+
+Guttenberg corpus --> books
+-----------------
+Brown corpus --> genres
+------------
+
+import nltk
+nltk.download()
+
+ * gutenberg used for datasets of books
+
+from nltk import gutenberg
+gutenberg.fileids()  --> returns a list of files available in the corpus
+--> gutenberg.raw('fn.txt')
+--> gutenberg.words('fn.txt')
+--> gutenberg.sents('fn.txt')
+
+ * brown corpus used for stylistics
+
+from nltk import brown
+brown.categories() --> gives a list of genres
+brown.fileids(categories=['humor'])  --> returns file-ids with category humor
+
+<corpusname>.words(categories=[list of categories])
+<corpusname>.sents(categories=[list of categories])
+<corpusname>.root
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Frequency Distribution  |
++-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+classes: FreqDist & ConditionalFreqDist
+
+from nltk import FreqDist, ConditionalFreqDist
+fd = FreqDist(list_of_words)
+fd.most_common(3) --> returns top 3 most occurred words
+fd.hapaxes() --> returns hapaxes(words appearing only once)
+fd.max() --> most frequently occurred word
+fd.get('the')
+fd.freq('the') --> word occurrence / total words
+
+l = [('cat1', 'good'), ('cat2', 'bad'), ('cat3', 'good')]
+	--> list of tuples: first word is category, second word is the word in category
+cfd = ConditionalFreqDist(l)
+cfd['cat1'] --> returns FreqDist for category 1
+
+cfd = CategoryFreqDist(
+	(genre, word)
+	for genre in brown.categories()
+	for word in brown.words(categories='genre'))
+genres=[<a list of genres>]
+modals=[<a list of words>]
+cfd.tabulate(conditions=genres, samples=modals) --> returns a tabular representation
+
+from nltk.corpus import names
+names = ([('male', name[-1]) for name in names.words('male.txt')] + 
+	 [('female', name[-1]) for name in names.words('female.txt')])
+cfd_names = ConditionalFreqDist(names)
+cfd_names.plot()
+
++-+-+-+-+-+-+
+| Stemming  |	- various forms of the same word
++-+-+-+-+-+-+   - does not work for words like good, better, best
+
+from nltk.stem import PorterStemmer
+pstem = PorterStemmer()
+pstem.stem('walking') --> walk
+
+from nltk.stem import LancasterStemmer
+lstem = LancasterStemmer()
+
+from nltk.stem import RegexStemmer
+rstem = RegexStemmer(r'ing$|s$|e$|able$')  --> $ used to indicate end of word, r as prefix to string
+rstem.stem('controllable') --> controll
+
++-+-+-+-+-+-+-+
+| Lemmatizers |  - using meaning for irregular words
++-+-+-+-+-+-+-+  - uses WordNet corpus
+
+from nltk.corpus import wordnet as wn
+wn.synsets('spoke')
+wn.synset('talk.v.01').definition()
+wn.synset('talk.v.01').examples()
+syn = 'talk.v.01'
+syn.lemma_names() --> returns synonyms of a word
+
+from nltk.stem import WordNetLemmatizer
+wnl = WordNetLemmatizer()
+wnl.lemmatize('spoken')  -> spoken
+wnl.lemmatize('spoken', 'v')  -> speak, v - verb
+wnl.lemmatize('worst', 'a')  -> bad, a - adjective
+
++-+-+-+-+-+-+-+-+
+| Tokenization  | - better performance than manual methods
++-+-+-+-+-+-+-+-+
+
+from nltk.tokenize import word_tokenize, sent_tokenize
+s = sent_tokenize(<string>)
+s = word_tokenize(<string>)
+
+--------------------| NLTK.ORG |--------------------
+https://www.nltk.org/book
+
+concordance: A concordance is an alphabetical list of the principal words used in a book or body of work, listing every instance of each word with its immediate context.
+
+from nltk.book import *
+text1.concordance("monstrous")
+text1.similar("monstrous")
+text2.common_contexts(["monstrous", "very"])
+text3.count("smote")
+
+text4.dispersion_plot(["citizens", "democracy", "freedom", "duties", "America"])
+
+def lexical_diversity(text):
+    return len(set(text)) / len(text)
+
+* analytics vidhya
+
+---Named entities---
+
+words = nltk.word_tokenize(sentence)
+tagged_words = nltk.pos_tag(words)
+namedEnt = nltk.ne_chunk(tagged_words)
+namedEnt.draw()
+
+--> Bag Of Words model 
+	- calculate no. of times a word occurs
+	- create a matrix for frequent words and their occurence in each sentence
+	- no semantic importance preserved
+
+--> TF-IDF (Term Frequency - Inverse Document Frequency)
+	TF-IDF = TF * IDF
+	TF = #occurences of word in document / #words in document
