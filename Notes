@@ -172,3 +172,4 @@ namedEnt.draw()
 --> TF-IDF (Term Frequency - Inverse Document Frequency)
 	TF-IDF = TF * IDF
 	TF = #occurences of word in document / #words in document
+	IDF = ln( #documents / #documents containing word)
