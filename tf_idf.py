@@ -21,6 +21,7 @@ def clean_data(dataset):
 	    dataset[i] = re.sub(r'\s$', '', dataset[i])
 	return dataset
 
+
 def create_word_count(words):
 	word_count = {}
 	for word in words:
@@ -37,7 +38,7 @@ def create_idf(dataset, words):
 	    for data in dataset:
 	        if word in data:
 	            t+=1;
-	    idf[word] = np.log((len(dataset)/t)+1)
+	    idf[word] = np.log((len(dataset)+1)/(t+1))
 	return idf
 
 def create_tf(dataset, words):
