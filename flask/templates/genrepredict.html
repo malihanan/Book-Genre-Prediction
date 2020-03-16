@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict your genres!</title>
+</head>
+<body>
+<div>
+                <textarea  id="clientmessage" onkeypress="submitonenter(event,this)"></textarea>
+                <input type="submit" value="Send" class="message-send" onclick="getResponse()" />
+            </div>
+<div>
+    <h4>
+        Input Summary:
+    </h4>
+    <p id="ipsummary"></p>
+<h4>Predicted Genres</h4>
+<div id="genreresponse"></div>
+</div>
+
+
+<script>
+    function submitonenter(evt, thisObj) {
+
+    if (evt) {
+
+            getResponse();
+    }
+}
+function getResponse() {
+    var resp = document.getElementById('genreresponse');
+    var summEle=document.getElementById('ipsummary');
+    var summ=document.getElementById('clientmessage').value;
+    summEle.innerHTML = summ;
+    console.log(summEle);
+    document.getElementById('clientmessage').value = '';
+    var xhr = new XMLHttpRequest();
+    var url = "http://127.0.0.1:5000/predict/?query=" + encodeURIComponent(summ);
+    console.log(url);
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Cntent-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+            var json = JSON.parse(xhr.responseText);
+            resp.innerHTML = json['reply'];
+        }
+    }
+}
+</script>
+</body>
+
+</html>
