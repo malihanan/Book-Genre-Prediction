@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Genre Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo"><strong>Genre Prediction</strong></a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+            </header>
+            
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>Predict Genre of a book from it's Summary</h1>
+					</header>
+					<footer>
+						<a href="#footer" class="button">Get Started</a>
+					</footer>
+				</div>
+			</section>
+
+        <!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+
+					<h3>Predict Genre</h3>
+
+					<form action="#" method="post">
+
+						<div class="field half first">
+							<label for="name">Book Title</label>
+							<input name="name" id="name" type="text" placeholder="Title Here..">
+						</div><!--
+						<div class="field half">
+							<label for="email">Predicted Genres</label>
+							<ul style="font-size: 1.5em;">
+								<li style="display: inline-block;">Romance</li> &nbsp; |
+								<li style="display: inline-block;">Fiction</li>
+							</ul>
+                        </div>-->
+                        <div  class="field half">
+                        	<div id="genreresponse"></div>
+                        </div>
+						<div class="field">
+							<label for="message">Summary</label>
+							<textarea name="message" id="clientmessage" onkeypress="submitonenter(event,this)" rows="6" placeholder="Summary Here..."></textarea>
+						</div>
+						<ul class="actions">
+                            <li><input value="Predict" class="button alt" type="submit" onclick="getResponse()"></li>
+						</ul>
+					</form>
+				</div>
+			</footer>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+            
+            <script>
+                function submitonenter(evt, thisObj) {
+                    if (evt) { getResponse(); }
+                }
+                function getResponse() {
+                    var resp = document.getElementById('genreresponse');
+                    var summEle=document.getElementById('ipsummary');
+                    var summ=document.getElementById('clientmessage').value;
+                    summEle.innerHTML = summ;
+                    console.log(summEle);
+                    document.getElementById('clientmessage').value = '';
+                    var xhr = new XMLHttpRequest();
+                    var url = "http://127.0.0.1:5000/predict/?query=" + encodeURIComponent(summ);
+                    console.log(url);
+                    xhr.open("GET", url, true);
+                    xhr.setRequestHeader("Cntent-Type", "application/x-www-form-urlencoded");
+                    xhr.send();
+            
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            console.log(xhr.responseText);
+                            var json = JSON.parse(xhr.responseText);
+                            resp.innerHTML = json['reply'];
+                        }
+                    }
+                }
+            </script>
+
+	</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict your genres!</title>
+</head>
+<body>
+<div>
+                <textarea  id="clientmessage" onkeypress="submitonenter(event,this)"></textarea>
+                <input type="submit" value="Send" class="message-send" onclick="getResponse()" />
+            </div>
+<div>
+    <h4>
+        Input Summary:
+    </h4>
+    <p id="ipsummary"></p>
+<h4>Predicted Genres</h4>
+<div id="genreresponse"></div>
+</div>
+
+
+<script>
+    function submitonenter(evt, thisObj) {
+        if (evt) { getResponse(); }
+    }
+    function getResponse() {
+        var resp = document.getElementById('genreresponse');
+        var summEle=document.getElementById('ipsummary');
+        var summ=document.getElementById('clientmessage').value;
+        summEle.innerHTML = summ;
+        console.log(summEle);
+        document.getElementById('clientmessage').value = '';
+        var xhr = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/predict/?query=" + encodeURIComponent(summ);
+        console.log(url);
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("Cntent-Type", "application/x-www-form-urlencoded");
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                var json = JSON.parse(xhr.responseText);
+                resp.innerHTML = json['reply'];
+            }
+        }
+    }
+</script>
+</body>
+
+</html>
+-->
