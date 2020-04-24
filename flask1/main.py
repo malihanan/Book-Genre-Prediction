@@ -20,15 +20,10 @@ def home():
 @app.route("/predict/",methods=['GET','POST'])
 def predict():
     query = request.args.get('query')
-
-    # stuff happens here that involves data to obtain a result
     l = predictfunctions.linearsvc(lsvc,query)
     o = predictfunctions.multionvsrest(tfidf_vectorizer,multilabel_binarizer,onevrest,query)
     data = {'linearsvc': l['reply'], 'onevrest': o['reply']}
     response = data
-
-    # result = [CBReply(data[0]['query'])]
-
     return response
 
 

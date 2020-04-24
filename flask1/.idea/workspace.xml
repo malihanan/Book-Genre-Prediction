@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8465179a-ecf5-4523-b66a-d4adcfa5f966" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../MultiLabelGenrePrediction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiLabelGenrePrediction.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../blurb.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../blurb.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/.idea/flask.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/predictfunctions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/preprocessfunctions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask/templates/genrepredict.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../final.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../final.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/genrepredict.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/genrepredict.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+            <state relative-caret-position="353">
+              <caret line="26" column="19" lean-forward="true" selection-start-line="19" selection-end-line="26" selection-end-column="19" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -34,11 +27,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/predictfunctions.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="e#0#82#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/genrepredict.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="67" column="80" selection-start-line="67" selection-start-column="80" selection-end-line="67" selection-end-column="80" />
+            <state relative-caret-position="244">
+              <caret line="97" column="20" lean-forward="true" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
               <folding>
                 <element signature="n#style#0;n#h2#0;n#div#2;n#div#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h4#0;n#div#0;n#div#2;n#div#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -92,13 +88,13 @@
       <list>
         <option value="$PROJECT_DIR$/genrepredict.html" />
         <option value="$PROJECT_DIR$/preprocessfunctions.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/predictfunctions.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/templates/genrepredict.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="984" />
@@ -182,10 +178,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="656" height="704" extended-state="1" />
+    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11631664" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20588236" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -205,23 +201,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predictfunctions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/preprocessfunctions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2108">
@@ -235,14 +214,34 @@
     <entry file="file://$PROJECT_DIR$/static/assets/css/main.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="26" column="19" lean-forward="true" selection-start-line="19" selection-end-line="26" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/genrepredict.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="67" column="80" selection-start-line="67" selection-start-column="80" selection-end-line="67" selection-end-column="80" />
+        <state relative-caret-position="244">
+          <caret line="97" column="20" lean-forward="true" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
           <folding>
             <element signature="n#style#0;n#h2#0;n#div#2;n#div#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#0;n#div#0;n#div#2;n#div#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#1;n#div#0;n#div#2;n#div#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictfunctions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#82#0" expanded="true" />
           </folding>
         </state>
       </provider>
