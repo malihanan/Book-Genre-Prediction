@@ -1,7 +1,7 @@
 # Book-Genre-Prediction
 A Natural Language Processing (NLP) Project for predicting genres of a book using its summary as a feature.
 
-The web app is hosted at http://e052e2ea.ngrok.io/
+The web app is hosted at http://predict.malihanan.com
 
 ### Description of File Structure:
 
