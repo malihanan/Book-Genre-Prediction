@@ -1,9 +1,13 @@
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+from nltk.stem.porter import PorterStemmer
+from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from num2words import num2words
 import numpy as np
 import re as re
-from nltk.corpus import stopwords
 stop_words = set(stopwords.words('english'))
 
 def remove_stopwords(data):
