@@ -1,7 +1,11 @@
-from flask import  Flask,render_template,request
+from flask import Flask,render_template,request
+from flask_cors import CORS,cross_origin
 import pickle
 import predictfunctions
 import json
+import logging
+from flask import jsonify
+
 with open('./clf.pickle', 'rb') as f:
     lsvc = pickle.load(f)
 with open('./tf.pickle', 'rb') as f:
@@ -11,7 +15,9 @@ with open('multi.pickle', 'rb') as f:
 with open('onevrest.pickle', 'rb') as f:
     onevrest = pickle.load(f)
 
-app=Flask(__name__)
+app = Flask(__name__)
+cors = CORS(app, resources={r"/predict/*": {"origins": "http://127.0.0.1"}})
+logging.getLogger('flask_cors').level = logging.DEBUG
 
 @app.route("/",methods=['GET','POST'])
 def home():
