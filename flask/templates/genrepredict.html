@@ -92,7 +92,7 @@
 					var summ=document.getElementById('clientmessage').value;
                     console.log(summ);
                     var xhr = new XMLHttpRequest();
-                    var url = "http://127.0.0.1:5000/predict/?query=" + encodeURIComponent(summ);
+                    var url = "/predict/?query=" + encodeURIComponent(summ);
                     console.log(url);
                     xhr.open("GET", url, true);
                     xhr.setRequestHeader("Cntent-Type", "application/x-www-form-urlencoded");
@@ -102,7 +102,8 @@
                             console.log(xhr.responseText);
                             var json = JSON.parse(xhr.responseText);
                             respl.innerHTML = json['linearsvc'];
-                            respo.innerHTML = json['onevrest'];
+                            respo.innerHTML = json['onevrest'][0].join(', ');
+			    result.scrollIntoView();
                     }
                     }
                 }
