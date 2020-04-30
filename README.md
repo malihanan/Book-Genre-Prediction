@@ -1,7 +1,7 @@
 # Book-Genre-Prediction
 A Natural Language Processing (NLP) Project for predicting genres of a book using its summary as a feature.
 
-The web app is hosted at http://genrepredict.com
+The web app is hosted at http://www.thegenrepredict.com/
 
 ### Description of File Structure:
 
@@ -24,10 +24,10 @@ This folder has notebook files related to the experiments conducted to evaluate 
 #### Docs:
 This folder has log files of info collected all through the development.
 
-#### own implementation of models:
+#### Own implementation of models:
 This folder has our own implementation of models, created whilst learning. They are not used in implementation.
 
-#### trial at summary:
+#### Trial at summary:
 This folder has a file where we tried generating summary of a doc. It uses extractive summarization. It is not used in the project.
 
 ### Links to Drive: 
