@@ -70,6 +70,8 @@
 						<div id="genreresponse">
 							<h4 style="color:white">Single Label prediction using Linear SVC</h4>
 							<div id="lsvc"></div>
+							<h4 style="color:white">Single Label prediction using Stochastic Gradient Descent</h4>
+							<div id="sgd"></div>
 							<h4 style="color:white">Multi Label prediction using OneVsRest Classifier and Logistic Regression</h4>
 							<div id="onevrest"></div>
 						</div>
@@ -88,6 +90,7 @@
                 }
                 function getResponse() {
                     var respl = document.getElementById('lsvc');
+                    var resps = document.getElementById('sgd');
                     var respo = document.getElementById('onevrest');
 					var summ=document.getElementById('clientmessage').value;
                     console.log(summ);
@@ -102,6 +105,7 @@
                             console.log(xhr.responseText);
                             var json = JSON.parse(xhr.responseText);
                             respl.innerHTML = json['linearsvc'];
+                            resps.innerHTML = json['sgd'];
                             respo.innerHTML = json['onevrest'];
                     }
                     }
