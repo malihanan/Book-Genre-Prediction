@@ -1,5 +1,7 @@
 # Book-Genre-Prediction
-A Natural Language Processing (NLP) Project for predicting genre of a book using its summary as a feature.
+A Natural Language Processing (NLP) Project for predicting genres of a book using its summary as a feature.
+
+The web app is hosted at http://thegenrepredict.com
 
 ### Description of File Structure:
 
