@@ -1,9 +1,22 @@
+import nltk
+try:
+    from nltk.corpus import stopwords
+except:
+    nltk.download('stopwords')
+    from nltk.corpus import stopwords
+try:
+    from nltk.tokenize import punkt
+except:
+    nltk.download('punkt')
+    from nltk.tokenize import punkt
+    
+from nltk.stem.porter import PorterStemmer
+from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from num2words import num2words
 import numpy as np
 import re as re
-from nltk.corpus import stopwords
 stop_words = set(stopwords.words('english'))
 
 def remove_stopwords(data):
@@ -67,7 +80,7 @@ def convert_numbers(data):
         try:
             w = num2words(int(w))
         except:
-            a = 0
+            pass
         new_text = new_text + " " + w
     new_text = np.char.replace(new_text, "-", " ")
     return new_text

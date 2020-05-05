@@ -1,0 +1,4 @@
+/__pycache/
+*.pickle
+*.log
+*.txt

@@ -11,9 +11,9 @@
 		<!-- Header -->
 			<header id="header">
 				<div class="inner">
-					<a href="index.html" class="logo"><strong>Genre Prediction</strong></a>
+					<a href="#" class="logo"><strong>Genre Prediction</strong></a>
 					<nav id="nav">
-						<a href="index.html">Home</a>
+						<a href="#">Home</a>
 					</nav>
 					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 				</div>
@@ -37,10 +37,9 @@
 					<h3>Predict Genre</h3>
 
 
-
 						<div class="field half first">
 							<label for="name">Book Title</label>
-							<input name="name" id="name" type="text" placeholder="Title Here..">
+							<input name="name" id="name" type="text" placeholder="Title Here.." required>
 						</div><!--
 						<div class="field half">
 							<label for="email">Predicted Genres</label>
@@ -55,116 +54,91 @@
 
 						<div class="field">
 							<label for="clientmessage">Summary</label>
-							<textarea name="clientmessage" id="clientmessage" onkeypress="submitonenter(event,this)" rows="6" placeholder="Summary Here..."></textarea>
+							<textarea name="clientmessage" id="clientmessage" onkeypress="submitonenter(event,this)" rows="6" placeholder="Summary Here..." required></textarea>
 						</div>
 					<br>
 						<ul class="actions">
                             <li><input value="Predict" class="button alt" type="submit" onclick="getResponse()"></li>
 						</ul>
 
-					<div >
-						<h2 style="color:white;">
-							Here are the predicted genres:
-						</h2>
-						<hr/>
-						<div id="genreresponse">
-							<h4 style="color:white">Single Label prediction using Linear SVC</h4>
-							<div id="lsvc"></div>
-							<h4 style="color:white">Single Label prediction using Stochastic Gradient Descent</h4>
-							<div id="sgd"></div>
-							<h4 style="color:white">Multi Label prediction using OneVsRest Classifier and Logistic Regression</h4>
-							<div id="onevrest"></div>
-						</div>
-					</div>
+					<div id="result">
+				<h2 style="color:white;">
+					Here are the predicted genres:
+				</h2>
+				<hr />
+				<div id="genreresponse">
+					<h4 style="color:white">Single Label prediction using Linear SVC</h4>
+					<h3>
+						<div style="color:darkslategray" id="lsvc"></div>
+					</h3>
+					<h4 style="color:white">Single Label prediction using SGD</h4>
+					<h3>
+						<div style="color:darkslategray" id="sgd"></div>
+					</h3>
+					<h4 style="color:white">Multi Label prediction using OneVsRest Classifier and Logistic Regression
+					</h4>
+					<h3>
+						<div style="color:darkslategray" id="onevrest"></div>
+					</h3>
+				</div>
+			</div>
 
 				</div>
 			</footer>
+
+			
+			<div id="survey">
+				<center>
+					<!-- script for survey monkey here -->
+				</center>
+			</div>
+
 			<script src="/static/assets/js/jquery.min.js"></script>
 			<script src="/static/assets/js/skel.min.js"></script>
 			<script src="/static/assets/js/util.js"></script>
             <script src="/static/assets/js/main.js"></script>
             
             <script>
+				var survey = document.getElementById("survey");
+				survey.style.display = "none";
+
                 function submitonenter(evt, thisObj) {
                     if (evt) { getResponse(); }
                 }
                 function getResponse() {
                     var respl = document.getElementById('lsvc');
-                    var resps = document.getElementById('sgd');
                     var respo = document.getElementById('onevrest');
+					var resps=document.getElementById('sgd');
 					var summ=document.getElementById('clientmessage').value;
+					var title = document.getElementById('name').value;
+					var result = document.getElementById("result");
                     console.log(summ);
-                    var xhr = new XMLHttpRequest();
-                    var url = "http://127.0.0.1:5000/predict/?query=" + encodeURIComponent(summ);
-                    console.log(url);
-                    xhr.open("GET", url, true);
-                    xhr.setRequestHeader("Cntent-Type", "application/x-www-form-urlencoded");
-                    xhr.send();
-            		xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                            console.log(xhr.responseText);
-                            var json = JSON.parse(xhr.responseText);
-                            respl.innerHTML = json['linearsvc'];
-                            resps.innerHTML = json['sgd'];
-                            respo.innerHTML = json['onevrest'];
-                    }
-                    }
+					if(summ.length == 0){
+						respl.innerHTML = "Please enter a summary.";
+						respo.innerHTML = "Please enter a summary.";
+						resps.innerHTML = "Please enter a summary.";
+					}
+					else{
+						var xhr = new XMLHttpRequest();
+						var url = "/predict/?query=" + encodeURIComponent(summ) + "&name=" + encodeURIComponent(title);
+						console.log(url);
+						xhr.open("GET", url, true);
+						xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+						xhr.send();
+						xhr.onreadystatechange = function () {
+							if (xhr.readyState === 4 && xhr.status === 200) {
+								console.log(xhr.responseText);
+								var json = JSON.parse(xhr.responseText);
+								respl.innerHTML = json['linearsvc'];
+								respo.innerHTML = json['onevrest'][0].join(', ');
+								resps.innerHTML=json['sgd'];
+								result.scrollIntoView();
+								survey.style.display = "block";
+							}
+                    	}
+					}
                 }
-            </script>
+			</script>
 
 	</body>
 </html>
-
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Predict your genres!</title>
-</head>
-<body>
-<div>
-                <textarea  id="clientmessage" onkeypress="submitonenter(event,this)"></textarea>
-                <input type="submit" value="Send" class="message-send" onclick="getResponse()" />
-            </div>
-<div>
-    <h4>
-        Input Summary:
-    </h4>
-    <p id="ipsummary"></p>
-<h4>Predicted Genres</h4>
-<div id="genreresponse"></div>
-</div>
-
-
-<script>
-    function submitonenter(evt, thisObj) {
-        if (evt) { getResponse(); }
-    }
-    function getResponse() {
-        var resp = document.getElementById('genreresponse');
-        var summEle=document.getElementById('ipsummary');
-        var summ=document.getElementById('clientmessage').value;
-        summEle.innerHTML = summ;
-        console.log(summEle);
-        document.getElementById('clientmessage').value = '';
-        var xhr = new XMLHttpRequest();
-        var url = "http://127.0.0.1:5000/predict/?query=" + encodeURIComponent(summ);
-        console.log(url);
-        xhr.open("GET", url, true);
-        xhr.setRequestHeader("Cntent-Type", "application/x-www-form-urlencoded");
-        xhr.send();
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log(xhr.responseText);
-                var json = JSON.parse(xhr.responseText);
-                resp.innerHTML = json['reply'];
-            }
-        }
-    }
-</script>
-</body>
-
-</html>
--->
